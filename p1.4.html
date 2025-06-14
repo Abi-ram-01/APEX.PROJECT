@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        body {
+            background-image: url(ig.jpg);
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+            text-transform: capitalize;
+            color: rgb(142, 83, 49);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: xx-large;
+        }
+        .top-box {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 150px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: slide-in 0.5s ease-in-out;
+        }
+        @keyframes slide-in {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .top-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .top-box ul li {
+            margin: 5px 0;
+        }
+        .top-box ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            padding: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .top-box ul li a:hover {
+            background-color: #f0e68c;
+            color: black;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: darkorange;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: orangered;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const tel = document.getElementById('tel-number').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !tel || !message) {
+                alert('Please fill out all fields before submitting.');
+                return false;
+            }
+
+            if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            alert('Form submitted successfully!');
+            document.querySelector('form').submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="top-box">
+        <ul>
+            <li><a href="p1.1.html">About Me</a></li>
+            <li><a href="p1.2.html">Portfolio</a></li>
+            <li><a href="p1.3.html">Interested Page</a></li>
+            <li><a href="p1.4.html">Contact Me</a></li>
+        </ul>
+    </div>
+
+    <h1>Contact Me</h1>
+
+    <form action="submit_form.php" method="POST" onsubmit="validateForm(event)">
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="tel-number">Tel:</label><br>
+        <input type="tel" id="tel-number" name="tel-number" required><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+      function validateForm(event) {
+          event.preventDefault(); // Prevent the default form submission behavior
+  
+          // Retrieve the form field values
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const tel = document.getElementById('tel-number').value;
+          const message = document.getElementById('message').value;
+  
+          // Basic validation
+          if (!name || !email || !tel || !message) {
+              alert('Please fill out all fields before submitting.');
+              return false;
+          }
+  
+          // Email validation
+          const emailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+          if (!emailPattern.test(email)) {
+              alert('Please enter a valid email address.');
+              return false;
+          }
+  
+          // Success message
+          alert('Form submitted successfully!');
+  
+          // Clear the form fields
+          document.getElementById('name').value = '';
+          document.getElementById('email').value = '';
+          document.getElementById('tel-number').value = '';
+          document.getElementById('message').value = '';
+  
+          // Optional: Add a success indicator on the page
+          const successMessage = document.createElement('p');
+          successMessage.textContent = 'Thank you for your submission!';
+          successMessage.style.color = 'green';
+          successMessage.style.textAlign = 'center';
+          document.body.appendChild(successMessage);
+  
+          // Automatically remove the success message after a few seconds
+          setTimeout(() => {
+              successMessage.remove();
+          }, 5000);
+      }
+  </script>
+  
+</body>
+</html>
